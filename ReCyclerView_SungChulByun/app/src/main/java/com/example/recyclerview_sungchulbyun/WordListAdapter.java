@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
  *
  */
 
+
 class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private Context mContext;
