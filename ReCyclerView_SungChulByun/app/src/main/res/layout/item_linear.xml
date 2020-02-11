@@ -9,6 +9,13 @@
     android:layout_margin="1dp"
     >
 
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="#80000000"
+        />
+
     <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="32dp"

@@ -43,7 +43,10 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private String current;
     private int viewType;
     private boolean isSelectable;
+
+
     private int selectCount;
+
 
     private static final int LINEAR = 0;
     private static final int GRID = 1;
@@ -68,6 +71,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     // TODO : 어댑터 패턴이란 무엇인가? (https://ko.wikipedia.org/wiki/어댑터_패턴)
+
     public WordListAdapter(Context context) {
         this.viewType = LINEAR;
         this.current = Environment.getRootDirectory().toString();
@@ -75,6 +79,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.mInflater = LayoutInflater.from(context);
         this.isSelectable = false;
         this.selectCount = 0;
+        this.mList = new File[0];
     }
 
     @NonNull
@@ -96,6 +101,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public int getViewType(){
         return this.viewType;
     }
+
 
     @Override
     public int getItemViewType(int position) {
@@ -129,6 +135,13 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         }
         else {
+            if(selectedItem[position]==1){
+                ((LinearItemViewHolder)holder).background.setVisibility(View.VISIBLE);
+                ((LinearItemViewHolder)holder).background.bringToFront();
+            }
+            else{
+                ((LinearItemViewHolder)holder).background.setVisibility(View.GONE);
+            }
             if(isSelectable){
                 ((LinearItemViewHolder)holder).box.setVisibility(View.VISIBLE);
                 if(isThisItemSelected(position)==1){
@@ -187,27 +200,10 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag(POSITION_TAG);
-            if(!isSelectable) {
-
-                File nfile = new File(mList[position].getAbsolutePath());
-                if (nfile.isDirectory()) {
-                    setCurrent(nfile.getAbsolutePath());
-                    MainActivity.loc.setText(nfile.getName());
-
-                    if (nfile.listFiles() != null) {
-                        setWordList(nfile.listFiles());
-                    } else {
-                        mList = new File[0];
-                        notifyDataSetChanged();
-                    }
-                } else {
-                    Toast.makeText(WordListAdapter.this.mContext, "This is not Directory", Toast.LENGTH_SHORT).show();
-                }
-            }
-            else{
+            listener.onItemClick(mList[position]);
+            if(isSelectable){
                 itemSelected(position);
             }
-
         }
     };
 
@@ -225,22 +221,11 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         mList = list;
         selectedItem = new int[list.length];
-        Arrays.sort(mList, new Comparator<File>(){
-            @Override
-            public int compare(File a, File b) {
-                if (a.isDirectory() && b.isDirectory()) {
-                    return a.getName().compareTo(b.getName());
-                } else if (a.isDirectory() && !b.isDirectory()) {
-                    return -1;
-                } else if (!a.isDirectory() && b.isDirectory()) {
-                    return 1;
-                } else {
-                    return a.getName().compareTo(b.getName());
-                }
-            }
-        });
+
         notifyDataSetChanged();
     }
+
+
 
     public void itemSelected(int pos){ // 1 : selected , 0 : not selected
         if(selectedItem[pos] == 0){
@@ -273,9 +258,11 @@ class LinearItemViewHolder extends RecyclerView.ViewHolder {
     TextView date;
     ImageView image;
     CheckBox box;
+    ImageView background;
 
     LinearItemViewHolder(@NonNull View itemView) {
         super(itemView);
+        background = itemView.findViewById(R.id.background);
         box = itemView.findViewById(R.id.checkbox);
         layout = itemView.findViewById(R.id.item_linear);
         name = itemView.findViewById(R.id.filename);

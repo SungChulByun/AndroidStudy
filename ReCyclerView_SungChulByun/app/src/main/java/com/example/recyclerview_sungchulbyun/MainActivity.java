@@ -2,7 +2,6 @@ package com.example.recyclerview_sungchulbyun;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -15,18 +14,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG = "asdf";
-    final String path = Environment.getRootDirectory().toString();
+    String rootPath = Environment.getRootDirectory().toString();
+    final String path = rootPath;
+
+
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
     public static TextView loc;
@@ -38,14 +49,19 @@ public class MainActivity extends AppCompatActivity {
     public static EditText bar;
     private ConstraintLayout main;
     private int delnum;
+    private boolean isSearching;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initList();
+
         loc = findViewById(R.id.location);
         setWordList(path);
+//        setWordList("///storage");
 
         delBar = findViewById(R.id.delete_bar);
         delBar.bringToFront();
@@ -68,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         main = findViewById(R.id.mainLayout);
 
         main.setOnTouchListener(myTouchListener);
+        mRecyclerView.addOnItemTouchListener(myItemTouchListener);
 
 
     }
@@ -93,20 +110,41 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private RecyclerView.OnItemTouchListener myItemTouchListener = new RecyclerView.OnItemTouchListener() {
+        @Override
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            if(isSearching){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        @Override
+        public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    };
+
     View.OnTouchListener myTouchListener = new View.OnTouchListener(){
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             Log.d(TAG, "onTouch: above");
-            if(event.getAction() == MotionEvent.ACTION_DOWN){
+            if(event.getAction() == MotionEvent.ACTION_DOWN&&isSearching){
                 hideSearchBar(bar);
-
+                isSearching=false;
                 Log.d(TAG, "onTouch: here");
                 return true;
             }
 
             return false;
         }
+
     };
 
     View.OnClickListener myListener = new View.OnClickListener(){
@@ -116,13 +154,25 @@ public class MainActivity extends AppCompatActivity {
 
                 case R.id.back:
                     if(mAdapter.getSelective()){
-                        mAdapter.setSelective(false);
-                        mAdapter.notifyDataSetChanged();
+                        if(mAdapter.getViewType() == LINEAR){
+
+                            mAdapter.setSelective(!mAdapter.getSelective());
+
+                            if(mAdapter.getSelective()){
+                                selectButton.setText("선택 취소");
+                                delBarUp();
+                            }
+                            else{
+                                selectButton.setText("선택");
+                                delBarDown();
+                            }
+                            mAdapter.notifyDataSetChanged();
+                        }
                     }
                     else {
                         String above = new File(mAdapter.getCurrent()).getParent();
-                        Log.d(TAG, "onClick: currnet" + mAdapter.getCurrent());
-                        Log.d(TAG, "onClick: parent" + above);
+                        Log.d(TAG, "onClick: currnet : " + mAdapter.getCurrent());
+                        Log.d(TAG, "onClick: parent : " + above);
                         if (above == null || above.equals("/")) {
                             Toast.makeText(MainActivity.this, "There is no location above", Toast.LENGTH_SHORT).show();
                         } else {
@@ -149,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.search:
                     bar.setVisibility(View.VISIBLE);
                     bar.requestFocus();
+                    isSearching = true;
                     break;
 
                 case R.id.select:
@@ -177,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.sure:
                     hidePopup();
-                    Toast.makeText(MainActivity.this, "선택된 "+mAdapter.getSelectCount()+"개의 파일 중"+delnum+"개의 파일이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, mAdapter.getSelectCount()+"개의 파일 중 "+delnum+"개의 파일이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     delnum=0;
                     deleteCheck();
                     mAdapter.setSelective(!mAdapter.getSelective());
@@ -195,6 +246,29 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+    private WordListAdapter.OnItemClickListener itemClickListener = new WordListAdapter.OnItemClickListener(){
+        @Override
+        public void onItemClick(File data) {
+
+            File nfile = new File(data.getAbsolutePath());
+            if (nfile.isDirectory()) {
+                setWordList(data.getAbsolutePath());
+//                setCurrent(nfile.getAbsolutePath());
+//                MainActivity.loc.setText(nfile.getName());
+//
+//                if (nfile.listFiles() != null) {
+//                    setWordList(nfile.listFiles());
+//                } else {
+//                    mList = new File[0];
+//                    notifyDataSetChanged();
+//                }
+            } else {
+                Toast.makeText(MainActivity.this, "This is not Directory", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
     public void popup(){
         findViewById(R.id.yes_or_no).setVisibility(View.VISIBLE);
         findViewById(R.id.yes_or_no).bringToFront();
@@ -229,6 +303,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initList() {
+
         mRecyclerView = findViewById(R.id.main_list);
         mRecyclerView.setOnTouchListener(myTouchListener);
         mAdapter = new WordListAdapter(this);
@@ -236,8 +311,10 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setViewType(LINEAR);
         delnum = 0;
-
+        isSearching = false;
+        Log.d(TAG, "initList: path : "+path);
     }
+
 
     public void typeChange(){
         if(mAdapter.getViewType()==LINEAR){
@@ -256,11 +333,32 @@ public class MainActivity extends AppCompatActivity {
     // TODO Step2 : 버튼일 클릭 될 때마다 String List를 어댑터에 추가
 
     private void setWordList(String ppath) {
-
         File root = new File(ppath);
         loc.setText(root.getName());
         mAdapter.setCurrent(root.getAbsolutePath());
-        mAdapter.setWordList(root.listFiles());
+        if(root.listFiles()==null||root.listFiles().length==0){
+            Log.d(TAG, "setWordList: null");
+            mAdapter.setWordList(new File[0]);
+        }
+        else {
+            File[] list = root.listFiles();
+            Arrays.sort(list, new Comparator<File>(){
+                @Override
+                public int compare(File a, File b) {
+                    if (a.isDirectory() && b.isDirectory()) {
+                        return a.getName().compareTo(b.getName());
+                    } else if (a.isDirectory() && !b.isDirectory()) {
+                        return -1;
+                    } else if (!a.isDirectory() && b.isDirectory()) {
+                        return 1;
+                    } else {
+                        return a.getName().compareTo(b.getName());
+                    }
+                }
+            });
+            mAdapter.setWordList(list);
+        }
+        mAdapter.setOnItemClickListener(itemClickListener);
 //        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 //
 //        int len = fileList.length;
