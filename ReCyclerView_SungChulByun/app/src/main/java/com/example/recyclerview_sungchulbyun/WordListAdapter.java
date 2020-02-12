@@ -21,9 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.lang.*;
+import java.util.List;
 
 import static com.example.recyclerview_sungchulbyun.MainActivity.bar;
 
@@ -38,7 +42,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private Context mContext;
     private LayoutInflater mInflater;
-    private File[] mList;
+    private List<File> mList;
     private int[] selectedItem;
     private String current;
     private int viewType;
@@ -72,14 +76,14 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     // TODO : 어댑터 패턴이란 무엇인가? (https://ko.wikipedia.org/wiki/어댑터_패턴)
 
-    public WordListAdapter(Context context) {
+    public WordListAdapter(Context context, String path) {
         this.viewType = LINEAR;
-        this.current = Environment.getRootDirectory().toString();
+        this.current = path;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.isSelectable = false;
         this.selectCount = 0;
-        this.mList = new File[0];
+        this.mList = new ArrayList<File>();
     }
 
     @NonNull
@@ -119,16 +123,16 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
         if (holder.getItemViewType()==GRID) {
-            ((GridItemViewHolder)holder).name.setText(mList[position].getName());
-            ((GridItemViewHolder)holder).num.setText(mList[position].listFiles()!=null ? ""+mList[position].listFiles().length:""+0);
-            if(!mList[position].isDirectory()){
+            ((GridItemViewHolder)holder).name.setText(mList.get(position).getName());
+            ((GridItemViewHolder)holder).num.setText(mList.get(position).listFiles()!=null ? ""+mList.get(position).listFiles().length:""+0);
+            if(!mList.get(position).isDirectory()){
                 ((GridItemViewHolder)holder).num.setText("");
             }
             else{
                 ((GridItemViewHolder)holder).num.append("개");
             }
-            ((GridItemViewHolder)holder).date.setText(transFormat.format(mList[position].lastModified()));
-            ((GridItemViewHolder)holder).image.setImageResource(mList[position].isDirectory() ? R.drawable.folder:R.drawable.exe);
+            ((GridItemViewHolder)holder).date.setText(transFormat.format(mList.get(position).lastModified()));
+            ((GridItemViewHolder)holder).image.setImageResource(mList.get(position).isDirectory() ? R.drawable.folder:R.drawable.exe);
             ((GridItemViewHolder)holder).layout.setTag(POSITION_TAG, position);
             ((GridItemViewHolder)holder).layout.setOnClickListener(clickListener);
 
@@ -154,16 +158,16 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             else{
                 ((LinearItemViewHolder)holder).box.setVisibility(View.GONE);
             }
-            ((LinearItemViewHolder)holder).name.setText(mList[position].getName());
-            ((LinearItemViewHolder)holder).num.setText(mList[position].listFiles()!=null ? ""+mList[position].listFiles().length:""+0);
-            if(!mList[position].isDirectory()){
+            ((LinearItemViewHolder)holder).name.setText(mList.get(position).getName());
+            ((LinearItemViewHolder)holder).num.setText(mList.get(position).listFiles()!=null ? ""+mList.get(position).listFiles().length:""+0);
+            if(!mList.get(position).isDirectory()){
                 ((LinearItemViewHolder)holder).num.setText("");
             }
             else{
                 ((LinearItemViewHolder)holder).num.append("개");
             }
-            ((LinearItemViewHolder)holder).date.setText(transFormat.format(mList[position].lastModified()));
-            ((LinearItemViewHolder)holder).image.setImageResource(mList[position].isDirectory() ? R.drawable.folder:R.drawable.exe);
+            ((LinearItemViewHolder)holder).date.setText(transFormat.format(mList.get(position).lastModified()));
+            ((LinearItemViewHolder)holder).image.setImageResource(mList.get(position).isDirectory() ? R.drawable.folder:R.drawable.exe);
             ((LinearItemViewHolder)holder).layout.setTag(POSITION_TAG, position);
             ((LinearItemViewHolder)holder).layout.setOnClickListener(clickListener);
         }
@@ -171,7 +175,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public void setSelective(boolean ntype){
         isSelectable = ntype;
-        selectedItem = new int[mList.length];
+        selectedItem = new int[mList.size()];
         selectCount = 0;
     }
     public boolean getSelective(){
@@ -187,12 +191,13 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(isSelectable){
             for(int i=0;i<selectedItem.length;i++){
                 if(selectedItem[i]==1){
-                    if(mList[i].delete()){
+                    if(mList.get(i).delete()){
                         count++;
                     }
                 }
             }
         }
+        if(count>0) setAdapterList(Arrays.asList(new File(getCurrent()).listFiles()));
         return count;
     }
 
@@ -200,7 +205,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag(POSITION_TAG);
-            listener.onItemClick(mList[position]);
+            listener.onItemClick(mList.get(position));
             if(isSelectable){
                 itemSelected(position);
             }
@@ -211,16 +216,31 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (mList == null || mList.length == 0) {
+        if (mList == null || mList.size() == 0) {
             return 0;
         }
-        return mList.length;
+        return mList.size();
     }
 
-    public void setWordList(File[] list) {
+    public void setAdapterList(List<File> list) {
 
         mList = list;
-        selectedItem = new int[list.length];
+        Collections.sort(mList, new Comparator<File>() {
+            @Override
+            public int compare(File a, File b) {
+                if (a.isDirectory() && b.isDirectory()) {
+                    return a.getName().compareTo(b.getName());
+                } else if (a.isDirectory() && !b.isDirectory()) {
+                    return -1;
+                } else if (!a.isDirectory() && b.isDirectory()) {
+                    return 1;
+                } else {
+                    return a.getName().compareTo(b.getName());
+                }
+            }
+        });
+
+        selectedItem = new int[list.size()];
 
         notifyDataSetChanged();
     }

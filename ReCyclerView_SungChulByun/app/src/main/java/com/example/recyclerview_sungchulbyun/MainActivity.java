@@ -2,39 +2,37 @@ package com.example.recyclerview_sungchulbyun;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG = "asdf";
     String rootPath = Environment.getRootDirectory().toString();
+    String myPath;
     final String path = rootPath;
 
 
@@ -50,17 +48,25 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout main;
     private int delnum;
     private boolean isSearching;
+    private PopupMenu p;
+
+    private int CREATE_FILE = 1357;
+    private int CREATE_TEXT = 2468;
+    private int DELETE = 1234;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myPath = getFilesDir().getAbsolutePath();
 
         initList();
 
         loc = findViewById(R.id.location);
-        setWordList(path);
+
+        setWordList(myPath);
+
 //        setWordList("///storage");
 
         delBar = findViewById(R.id.delete_bar);
@@ -74,9 +80,13 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.search).setOnClickListener(myListener);
         findViewById(R.id.select).setOnClickListener(myListener);
         delBar.setOnClickListener(myListener);
-        findViewById(R.id.sure).setOnClickListener(myListener);
-        findViewById(R.id.cancel).setOnClickListener(myListener);
-        findViewById(R.id.yes_or_no).setOnClickListener(myListener);
+
+        ImageView add = findViewById(R.id.add_circle);
+        add.setOnClickListener(myListener);
+
+        p = new PopupMenu(getApplicationContext(), add);
+        getMenuInflater().inflate(R.menu.popup, p.getMenu());
+        p.setOnMenuItemClickListener(myPopupListener);
 
 
         bar = findViewById(R.id.search_bar);
@@ -109,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+
 
     private RecyclerView.OnItemTouchListener myItemTouchListener = new RecyclerView.OnItemTouchListener() {
         @Override
@@ -146,6 +158,54 @@ public class MainActivity extends AppCompatActivity {
         }
 
     };
+
+
+    // TODO 팝업 메뉴!
+
+    PopupMenu.OnMenuItemClickListener myPopupListener = new PopupMenu.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch(item.getItemId()){
+                case R.id.create_file:
+                    Intent fileIntent = new Intent(MainActivity.this, FileActivity.class);
+                    fileIntent.putExtra("type", 0);
+                    Log.d(TAG, "onMenuItemClick: here111");
+                    startActivityForResult(fileIntent, CREATE_FILE);
+                    Log.d(TAG, "onMenuItemClick: here222");
+
+                    break;
+                case R.id.create_text:
+                    Intent textIntent = new Intent(MainActivity.this, FileActivity.class);
+                    textIntent.putExtra("type", 1);
+                    startActivityForResult(textIntent, CREATE_TEXT);
+
+
+                    break;
+            }
+            return false;
+        }
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CREATE_FILE) {
+            if(resultCode == RESULT_OK){
+                makeDir(data.getStringExtra("filename"));
+            }
+        }
+        else if(requestCode == CREATE_TEXT){
+            if(resultCode == RESULT_OK){
+                makeText(data.getStringExtra("filename"), data.getStringExtra("content"));
+            }
+        }
+        else if(requestCode == DELETE){
+            if(resultCode == RESULT_OK){
+                delete();
+            }
+        }
+    }
+
 
     View.OnClickListener myListener = new View.OnClickListener(){
         @Override
@@ -220,66 +280,89 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case R.id.delete_bar:
-                    popup();
-                    break;
-                case R.id.yes_or_no:
-                case R.id.cancel:
-                    hidePopup();
-                    break;
-                case R.id.sure:
-                    hidePopup();
-                    Toast.makeText(MainActivity.this, mAdapter.getSelectCount()+"개의 파일 중 "+delnum+"개의 파일이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                    delnum=0;
-                    deleteCheck();
-                    mAdapter.setSelective(!mAdapter.getSelective());
+                    Intent delIntent = new Intent(MainActivity.this, DeleteCheck.class);
+                    startActivityForResult(delIntent, DELETE);
 
-                    if(mAdapter.getSelective()){
-                        selectButton.setText("선택 취소");
-                        delBarUp();
-                    }
-                    else{
-                        selectButton.setText("선택");
-                        delBarDown();
-                    }
-                    mAdapter.notifyDataSetChanged();
+                    break;
+
+                case R.id.add_circle:
+                    Log.d(TAG, "onClick: add circle");
+                    p.show();
                     break;
             }
         }
     };
+
+    private void delete(){
+        delnum=0;
+        deleteCheck();
+        mAdapter.setSelective(!mAdapter.getSelective());
+
+        if(mAdapter.getSelective()){
+            selectButton.setText("선택 취소");
+            delBarUp();
+        }
+        else{
+            selectButton.setText("선택");
+            delBarDown();
+        }
+        Toast.makeText(MainActivity.this, mAdapter.getSelectCount()+"개의 파일 중 "+delnum+"개의 파일이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+        mAdapter.notifyDataSetChanged();
+    }
 
     private WordListAdapter.OnItemClickListener itemClickListener = new WordListAdapter.OnItemClickListener(){
         @Override
         public void onItemClick(File data) {
+            if(!mAdapter.getSelective()) {
+                File nfile = new File(data.getAbsolutePath());
+                if (nfile.isDirectory()) {
+                    setWordList(data.getAbsolutePath());
+                    //                setCurrent(nfile.getAbsolutePath());
+                    //                MainActivity.loc.setText(nfile.getName());
+                    //
+                    //                if (nfile.listFiles() != null) {
+                    //                    setWordList(nfile.listFiles());
+                    //                } else {
+                    //                    mList = new File[0];
+                    //                    notifyDataSetChanged();
+                    //                }
+                } else if (nfile.getName().endsWith(".txt")){
 
-            File nfile = new File(data.getAbsolutePath());
-            if (nfile.isDirectory()) {
-                setWordList(data.getAbsolutePath());
-//                setCurrent(nfile.getAbsolutePath());
-//                MainActivity.loc.setText(nfile.getName());
-//
-//                if (nfile.listFiles() != null) {
-//                    setWordList(nfile.listFiles());
-//                } else {
-//                    mList = new File[0];
-//                    notifyDataSetChanged();
-//                }
-            } else {
-                Toast.makeText(MainActivity.this, "This is not Directory", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "This is not Directory", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     };
 
-    public void popup(){
-        findViewById(R.id.yes_or_no).setVisibility(View.VISIBLE);
-        findViewById(R.id.yes_or_no).bringToFront();
+    public void makeDir(String filename){
+        File nFile = new File(mAdapter.getCurrent()+"/"+filename);
+        boolean check = nFile.mkdirs();
+        Log.d(TAG, "makeDir current: "+myPath);
+        Log.d(TAG, "makeDir: name : "+filename);
+        Log.d(TAG, "makeDir: "+check);
+
+        mAdapter.setAdapterList(Arrays.asList(new File(mAdapter.getCurrent()).listFiles()));
     }
-    public void hidePopup(){
-        findViewById(R.id.yes_or_no).setVisibility(View.GONE);
+
+    public void makeText(String textname, String content){
+        File nFile = new File(mAdapter.getCurrent()+"/"+textname+".txt");
+        try {
+            FileWriter fw = new FileWriter(nFile, true);
+            fw.write(content);
+            fw.flush();
+            fw.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        mAdapter.setAdapterList(Arrays.asList(new File(mAdapter.getCurrent()).listFiles()));
 
     }
 
     public void delBarUp(){
-        delBar.animate().translationY(-delBar.getHeight()).alpha(1.0f);
+        delBar.animate().alpha(1f).translationY(-delBar.getHeight());
     }
     public void delBarDown(){
         delBar.animate().translationY(delBar.getHeight()).alpha(0.0f);
@@ -289,8 +372,6 @@ public class MainActivity extends AppCompatActivity {
         if(mAdapter.getSelectCount()>0){
 
             delnum = mAdapter.delete();
-
-            mAdapter.notifyDataSetChanged();
             delBarDown();
         }
         else{
@@ -306,13 +387,13 @@ public class MainActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.main_list);
         mRecyclerView.setOnTouchListener(myTouchListener);
-        mAdapter = new WordListAdapter(this);
+        mAdapter = new WordListAdapter(this, myPath);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setViewType(LINEAR);
         delnum = 0;
         isSearching = false;
-        Log.d(TAG, "initList: path : "+path);
+        for(int i=0;i<10;i++) makeDir("File" + i);
     }
 
 
@@ -325,7 +406,7 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
             mAdapter.setViewType(LINEAR);
         }
-        setWordList(mAdapter.getCurrent());
+        mAdapter.notifyDataSetChanged();
     }
 
 
@@ -338,25 +419,12 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.setCurrent(root.getAbsolutePath());
         if(root.listFiles()==null||root.listFiles().length==0){
             Log.d(TAG, "setWordList: null");
-            mAdapter.setWordList(new File[0]);
+            mAdapter.setAdapterList(Arrays.asList(new File[0]));
         }
         else {
             File[] list = root.listFiles();
-            Arrays.sort(list, new Comparator<File>(){
-                @Override
-                public int compare(File a, File b) {
-                    if (a.isDirectory() && b.isDirectory()) {
-                        return a.getName().compareTo(b.getName());
-                    } else if (a.isDirectory() && !b.isDirectory()) {
-                        return -1;
-                    } else if (!a.isDirectory() && b.isDirectory()) {
-                        return 1;
-                    } else {
-                        return a.getName().compareTo(b.getName());
-                    }
-                }
-            });
-            mAdapter.setWordList(list);
+
+            mAdapter.setAdapterList(Arrays.asList(list));
         }
         mAdapter.setOnItemClickListener(itemClickListener);
 //        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

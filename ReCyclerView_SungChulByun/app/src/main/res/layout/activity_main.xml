@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.recyclerview_sungchulbyun.CustomLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.recyclerview_sungchulbyun.CustomLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
@@ -108,7 +109,7 @@
         android:id="@+id/select"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:layout_marginRight="8dp"
+        android:layout_margin="8dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dots"
         android:textSize="24dp"
@@ -159,90 +160,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/blue_folder" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/yes_or_no"
-        android:background="#A6000000"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/popup"
-            android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:background="@drawable/double_rounded"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-
-            android:layout_margin="40dp"
-            >
-
-            <TextView
-                android:id="@+id/delete_message"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintVertical_weight="1"
-                android:textColor="#ffffff"
-                android:text="정말 삭제하겠습니까?"
-                android:gravity="center"
-                android:textSize="20dp"
-
-                android:paddingTop="20dp"
-
-                app:layout_constraintTop_toTopOf="@id/popup"
-                app:layout_constraintLeft_toLeftOf="@id/popup"
-                app:layout_constraintRight_toRightOf="@id/popup"
-                app:layout_constraintBottom_toTopOf="@id/cancel"
-
-                />
-
-            <TextView
-                android:id="@+id/cancel"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="취소"
-                android:textSize="16dp"
-                android:textColor="#FF9800"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="@id/popup"
-                app:layout_constraintLeft_toLeftOf="@id/popup"
-                app:layout_constraintRight_toLeftOf="@+id/sure"
-                app:layout_constraintTop_toBottomOf="@id/delete_message"
-                app:layout_constraintVertical_weight="1"
-                />
-
-            <TextView
-                android:id="@+id/sure"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="삭제"
-                android:textSize="16dp"
-                android:textColor="#FF9800"
-                android:gravity="center"
-                app:layout_constraintRight_toRightOf="@id/popup"
-                app:layout_constraintLeft_toRightOf="@+id/cancel"
-                app:layout_constraintTop_toBottomOf="@id/delete_message"
-                app:layout_constraintBottom_toBottomOf="@id/popup"
-                />
-
-            <ImageView
-                android:layout_width="1dp"
-                android:layout_height="16dp"
-                android:src="#777777"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/delete_message"
-                app:layout_constraintBottom_toBottomOf="@id/popup"
-                />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 </com.example.recyclerview_sungchulbyun.CustomLayout>
