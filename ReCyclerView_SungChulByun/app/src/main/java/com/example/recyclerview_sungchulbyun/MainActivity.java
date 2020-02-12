@@ -34,7 +34,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -417,9 +416,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void deleteCheck(){
         if(mAdapter.getSelectCount()>0){
-
             mAdapter.delete();
-            delBarDown();
         }
         else{
             Toast.makeText(this, "Nothing to Delete", Toast.LENGTH_SHORT).show();

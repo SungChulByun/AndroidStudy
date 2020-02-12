@@ -2,7 +2,6 @@ package com.example.recyclerview_sungchulbyun;
 
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,7 +71,6 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public void init(){
-
         this.isSelectable = false;
         this.selectCount = 0;
         this.mList = new ArrayList<>();
