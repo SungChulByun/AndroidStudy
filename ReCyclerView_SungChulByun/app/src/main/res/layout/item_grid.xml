@@ -6,20 +6,40 @@
     android:layout_margin="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/grid_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="#80000000"
+        />
+    <CheckBox
+        android:id="@+id/grid_checkbox"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:gravity="center_horizontal|center_vertical"
+
+        android:buttonTint="#FFFFFF"
+        android:clickable="false"
+        android:visibility="gone"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/grid_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#373737"
-        app:layout_constraintBottom_toTopOf="@id/filename"
+        app:layout_constraintBottom_toTopOf="@id/grid_filename"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight="6" />
 
+
+
     <TextView
-        android:id="@+id/filename"
+        android:id="@+id/grid_filename"
         android:layout_width="0dp"
-        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintHorizontal_weight="7"
         android:layout_height="0dp"
         android:background="#4D4D4D"
         android:textColor="#ffffff"
@@ -27,22 +47,22 @@
         android:gravity="center"
         app:layout_constraintVertical_weight="2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/grid_image"
 
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/num"
+        app:layout_constraintRight_toLeftOf="@id/grid_num"
         />
 
     <TextView
-        android:id="@+id/num"
+        android:id="@+id/grid_num"
         android:layout_width="0dp"
-        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintHorizontal_weight="3"
         android:layout_height="0dp"
         app:layout_constraintVertical_weight="2"
-        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/grid_image"
         app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintLeft_toRightOf="@id/filename"
+        app:layout_constraintLeft_toRightOf="@id/grid_filename"
         app:layout_constraintRight_toRightOf="parent"
 
         android:textSize="16dp"
@@ -51,7 +71,7 @@
         android:gravity="right|center_vertical"
         />
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/grid_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"

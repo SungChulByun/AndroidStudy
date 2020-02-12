@@ -2,6 +2,7 @@ package com.example.recyclerview_sungchulbyun;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,14 +20,21 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.Buffer;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,19 +54,21 @@ public class MainActivity extends AppCompatActivity {
     private static final int GRID = 1;
     public static EditText bar;
     private ConstraintLayout main;
-    private int delnum;
     private boolean isSearching;
     private PopupMenu p;
 
-    private int CREATE_FILE = 1357;
-    private int CREATE_TEXT = 2468;
-    private int DELETE = 1234;
+    private final int CREATE_FILE = 2;
+    private final int CREATE_TEXT = 3;
+    private final int EDIT_TEXT = 4;
+    private final int DELETE = 5;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         myPath = getFilesDir().getAbsolutePath();
 
         initList();
@@ -168,17 +178,13 @@ public class MainActivity extends AppCompatActivity {
             switch(item.getItemId()){
                 case R.id.create_file:
                     Intent fileIntent = new Intent(MainActivity.this, FileActivity.class);
-                    fileIntent.putExtra("type", 0);
-                    Log.d(TAG, "onMenuItemClick: here111");
                     startActivityForResult(fileIntent, CREATE_FILE);
-                    Log.d(TAG, "onMenuItemClick: here222");
 
                     break;
                 case R.id.create_text:
-                    Intent textIntent = new Intent(MainActivity.this, FileActivity.class);
-                    textIntent.putExtra("type", 1);
+                    Intent textIntent = new Intent(MainActivity.this, TextActivity.class);
+                    textIntent.putExtra("type", R.integer.NEW_FILE);
                     startActivityForResult(textIntent, CREATE_TEXT);
-
 
                     break;
             }
@@ -196,12 +202,17 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(requestCode == CREATE_TEXT){
             if(resultCode == RESULT_OK){
-                makeText(data.getStringExtra("filename"), data.getStringExtra("content"));
+                makeText(data.getStringExtra("textname"), data.getStringExtra("content"));
             }
         }
         else if(requestCode == DELETE){
             if(resultCode == RESULT_OK){
                 delete();
+            }
+        }
+        else if(requestCode == EDIT_TEXT){
+            if(resultCode == RESULT_OK) {
+                updateText(data.getStringExtra("textname"), data.getStringExtra("content"));
             }
         }
     }
@@ -213,34 +224,16 @@ public class MainActivity extends AppCompatActivity {
             switch (v.getId()) {
 
                 case R.id.back:
-                    if(mAdapter.getSelective()){
-                        if(mAdapter.getViewType() == LINEAR){
-
-                            mAdapter.setSelective(!mAdapter.getSelective());
-
-                            if(mAdapter.getSelective()){
-                                selectButton.setText("선택 취소");
-                                delBarUp();
-                            }
-                            else{
-                                selectButton.setText("선택");
-                                delBarDown();
-                            }
-                            mAdapter.notifyDataSetChanged();
-                        }
+                    if(mAdapter.getSelectable()){
+                        changeSelectable();
                     }
                     else {
                         String above = new File(mAdapter.getCurrent()).getParent();
-                        Log.d(TAG, "onClick: currnet : " + mAdapter.getCurrent());
-                        Log.d(TAG, "onClick: parent : " + above);
                         if (above == null || above.equals("/")) {
                             Toast.makeText(MainActivity.this, "There is no location above", Toast.LENGTH_SHORT).show();
                         } else {
-
-
                             setWordList(above);
                             mAdapter.setCurrent(above);
-
                         }
                     }
                     break;
@@ -263,21 +256,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.select:
-                    if(mAdapter.getViewType() == LINEAR){
-
-
-                        mAdapter.setSelective(!mAdapter.getSelective());
-
-                        if(mAdapter.getSelective()){
-                            selectButton.setText("선택 취소");
-                            delBarUp();
-                        }
-                        else{
-                            selectButton.setText("선택");
-                            delBarDown();
-                        }
-                        mAdapter.notifyDataSetChanged();
-                    }
+                    changeSelectable();
                     break;
                 case R.id.delete_bar:
                     Intent delIntent = new Intent(MainActivity.this, DeleteCheck.class);
@@ -293,12 +272,8 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void delete(){
-        delnum=0;
-        deleteCheck();
-        mAdapter.setSelective(!mAdapter.getSelective());
-
-        if(mAdapter.getSelective()){
+    private void changeSelectable(){
+        if(!mAdapter.getSelectable()) {
             selectButton.setText("선택 취소");
             delBarUp();
         }
@@ -306,32 +281,73 @@ public class MainActivity extends AppCompatActivity {
             selectButton.setText("선택");
             delBarDown();
         }
-        Toast.makeText(MainActivity.this, mAdapter.getSelectCount()+"개의 파일 중 "+delnum+"개의 파일이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
+        mAdapter.clearSelect();
+        mAdapter.setSelectable();
         mAdapter.notifyDataSetChanged();
     }
 
+    private void delete(){
+        deleteCheck();
+        changeSelectable();
+    }
+
+    private void makeTextAlert(final File file){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        Log.d(TAG, "makeTextAlert: text here");
+        alert.setTitle("파일을 수정하시겠습니까?");
+        final String filename = file.getName();
+        final String content = ReadFileText(file);
+        alert.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alert.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //open text file
+                Intent textIntent = new Intent(MainActivity.this, TextActivity.class);
+                textIntent.putExtra("type", R.integer.OLD_FILE);
+                textIntent.putExtra("filename", filename);
+                textIntent.putExtra("content", content);
+
+
+                startActivityForResult(textIntent, EDIT_TEXT);
+                
+            }
+        });
+        alert.show();
+    }
+
+
     private WordListAdapter.OnItemClickListener itemClickListener = new WordListAdapter.OnItemClickListener(){
         @Override
-        public void onItemClick(File data) {
-            if(!mAdapter.getSelective()) {
+        public void onItemClick(File data, int position) {
+            if(!mAdapter.getSelectable()) {
+
                 File nfile = new File(data.getAbsolutePath());
                 if (nfile.isDirectory()) {
                     setWordList(data.getAbsolutePath());
-                    //                setCurrent(nfile.getAbsolutePath());
-                    //                MainActivity.loc.setText(nfile.getName());
-                    //
-                    //                if (nfile.listFiles() != null) {
-                    //                    setWordList(nfile.listFiles());
-                    //                } else {
-                    //                    mList = new File[0];
-                    //                    notifyDataSetChanged();
-                    //                }
-                } else if (nfile.getName().endsWith(".txt")){
-
-                }
-                else {
+                } else if (nfile.getName().endsWith(".txt")) {
+                    Log.d(TAG, "onItemClick: text");
+                    makeTextAlert(data);
+                } else {
                     Toast.makeText(MainActivity.this, "This is not Directory", Toast.LENGTH_SHORT).show();
                 }
+            }
+            else{
+                mAdapter.itemSelected(position);
+            }
+        }
+    };
+
+    private WordListAdapter.OnItemLongClickListener itemLongClickListener = new WordListAdapter.OnItemLongClickListener() {
+        @Override
+        public void myonItemLongClick(File data, int position) {
+            if(!mAdapter.getSelectable()){
+                changeSelectable();
+                mAdapter.itemSelected(position);
             }
         }
     };
@@ -343,12 +359,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "makeDir: name : "+filename);
         Log.d(TAG, "makeDir: "+check);
 
-        mAdapter.setAdapterList(Arrays.asList(new File(mAdapter.getCurrent()).listFiles()));
+        mAdapter.resetAdapter();
     }
 
     public void makeText(String textname, String content){
-        File nFile = new File(mAdapter.getCurrent()+"/"+textname+".txt");
         try {
+            File nFile = new File(mAdapter.getCurrent()+"/"+textname+".txt");
             FileWriter fw = new FileWriter(nFile, true);
             fw.write(content);
             fw.flush();
@@ -357,9 +373,40 @@ public class MainActivity extends AppCompatActivity {
         catch(Exception e){
             e.printStackTrace();
         }
-        mAdapter.setAdapterList(Arrays.asList(new File(mAdapter.getCurrent()).listFiles()));
-
+        mAdapter.resetAdapter();
     }
+    public void updateText(String origin, String addedContent){
+        try {
+            File nFile = new File(mAdapter.getCurrent()+"/"+origin);
+            BufferedWriter buffWrite = new BufferedWriter(new FileWriter(nFile));
+            buffWrite.write(addedContent, 0, addedContent.length());
+            buffWrite.flush();
+            buffWrite.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private String ReadFileText(File file){
+        String strText = "";
+        int nBuffer;
+        try{
+            BufferedReader bufferRead = new BufferedReader(new FileReader(file));
+            while((nBuffer = bufferRead.read()) !=-1){
+                strText+=(char)nBuffer;
+            }
+            bufferRead.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return strText;
+    }
+
 
     public void delBarUp(){
         delBar.animate().alpha(1f).translationY(-delBar.getHeight());
@@ -371,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
     public void deleteCheck(){
         if(mAdapter.getSelectCount()>0){
 
-            delnum = mAdapter.delete();
+            mAdapter.delete();
             delBarDown();
         }
         else{
@@ -388,12 +435,11 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.main_list);
         mRecyclerView.setOnTouchListener(myTouchListener);
         mAdapter = new WordListAdapter(this, myPath);
+        mAdapter.setHasStableIds(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setViewType(LINEAR);
-        delnum = 0;
         isSearching = false;
-        for(int i=0;i<10;i++) makeDir("File" + i);
     }
 
 
@@ -427,35 +473,7 @@ public class MainActivity extends AppCompatActivity {
             mAdapter.setAdapterList(Arrays.asList(list));
         }
         mAdapter.setOnItemClickListener(itemClickListener);
-//        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-//
-//        int len = fileList.length;
-//        RecyclerItem[] rList = new RecyclerItem[len];
-//        for(int i=0;i<len;i++){
-//            if(fileList[i].getName() !=null) {
-//
-//                RecyclerItem item = new RecyclerItem();
-//
-//                String time = transFormat.format(fileList[i].lastModified());
-//
-//                if (fileList[i].isDirectory()) {
-//                    item.setIcon(getDrawable(R.drawable.file));
-//                } else {
-//                    item.setIcon(getDrawable(R.drawable.exe));
-//                }
-//                int num ;
-//                if(fileList[i].listFiles() ==null) num=0;
-//                else num = fileList[i].listFiles().length;
-//
-//                item.setTitle(fileList[i].getName());
-//                item.setDate(time);
-//                item.setNum(String.valueOf(num));
-//
-//                rList[i] = item;
-//
-//            }
-//        }
-//        List<RecyclerItem> wordList = Arrays.asList(rList);
+        mAdapter.setOnItemLongClickListener(itemLongClickListener);
 
     }
 }

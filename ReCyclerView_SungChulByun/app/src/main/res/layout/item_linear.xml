@@ -10,14 +10,14 @@
     >
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/linear_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="#80000000"
         />
 
     <CheckBox
-        android:id="@+id/checkbox"
+        android:id="@+id/linear_checkbox"
         android:layout_width="32dp"
         android:layout_height="0dp"
         android:gravity="center_horizontal|center_vertical"
@@ -27,22 +27,22 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/image"
+        app:layout_constraintRight_toLeftOf="@id/linear_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/linear_image"
         android:layout_width="0dp"
         app:layout_constraintHorizontal_weight="2"
         android:layout_height="0dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/filename"
-        app:layout_constraintLeft_toRightOf="@id/checkbox"
+        app:layout_constraintRight_toLeftOf="@+id/linear_filename"
+        app:layout_constraintLeft_toRightOf="@id/linear_checkbox"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/filename"
+        android:id="@+id/linear_filename"
         android:layout_width="0dp"
         app:layout_constraintVertical_weight="5"
         android:layout_height="0dp"
@@ -52,13 +52,13 @@
         android:gravity="left|center_vertical"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/date"
+        app:layout_constraintBottom_toTopOf="@id/linear_date"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/image"
+        app:layout_constraintLeft_toRightOf="@id/linear_image"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/date"
+        android:id="@+id/linear_date"
         android:layout_width="0dp"
         app:layout_constraintVertical_weight="5"
         android:layout_height="0dp"
@@ -68,13 +68,13 @@
         android:background="#abcdef"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/num"
-        app:layout_constraintLeft_toRightOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@id/filename"
+        app:layout_constraintRight_toLeftOf="@id/linear_num"
+        app:layout_constraintLeft_toRightOf="@id/linear_image"
+        app:layout_constraintTop_toBottomOf="@id/linear_filename"
         />
 
     <TextView
-        android:id="@+id/num"
+        android:id="@+id/linear_num"
         android:layout_width="0dp"
         app:layout_constraintVertical_weight="5"
         android:layout_height="0dp"
@@ -84,10 +84,10 @@
         android:background="#abcdef"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filename"
+        app:layout_constraintTop_toBottomOf="@id/linear_filename"
 
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/date"
+        app:layout_constraintLeft_toRightOf="@id/linear_date"
 
         />
 

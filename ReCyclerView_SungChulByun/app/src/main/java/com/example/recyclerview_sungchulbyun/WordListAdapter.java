@@ -2,18 +2,13 @@ package com.example.recyclerview_sungchulbyun;
 
 
 import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -23,19 +18,10 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.lang.*;
 import java.util.List;
-
-import static com.example.recyclerview_sungchulbyun.MainActivity.bar;
-
-/**
- * Author : Jongchan Kim - ace.kim@navercorp.com
- * Created date : 2020-01-21
- *
- */
 
 
 class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -47,43 +33,49 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private String current;
     private int viewType;
     private boolean isSelectable;
-
-
     private int selectCount;
-
 
     private static final int LINEAR = 0;
     private static final int GRID = 1;
 
 
     public interface OnItemClickListener{
-        public void onItemClick(File data);
+        void onItemClick(File data, int position);
+    }
+    public interface OnItemLongClickListener{
+        void myonItemLongClick(File data, int position);
     }
 
+
     private OnItemClickListener listener;
+    private OnItemLongClickListener mymyLongClickListener;
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
+    }
+    public void setOnItemLongClickListener(OnItemLongClickListener lcListener){
+        this.mymyLongClickListener = lcListener;
     }
 
     public void setCurrent(String name){
         this.current = name;
     }
 
-    public String getCurrent(){
-        return this.current;
-    }
-
-    // TODO : 어댑터 패턴이란 무엇인가? (https://ko.wikipedia.org/wiki/어댑터_패턴)
+    public String getCurrent(){ return this.current; }
 
     public WordListAdapter(Context context, String path) {
-        this.viewType = LINEAR;
         this.current = path;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
+        this.viewType = LINEAR;
+        init();
+    }
+
+    public void init(){
+
         this.isSelectable = false;
         this.selectCount = 0;
-        this.mList = new ArrayList<File>();
+        this.mList = new ArrayList<>();
     }
 
     @NonNull
@@ -123,6 +115,26 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
         if (holder.getItemViewType()==GRID) {
+            if(selectedItem[position]==1){
+                ((GridItemViewHolder)holder).background.setVisibility(View.VISIBLE);
+                ((GridItemViewHolder)holder).background.bringToFront();
+            }
+            else{
+                ((GridItemViewHolder)holder).background.setVisibility(View.GONE);
+            }
+            if(isSelectable){
+                ((GridItemViewHolder)holder).box.setVisibility(View.VISIBLE);
+                ((GridItemViewHolder)holder).box.bringToFront();
+                if(isThisItemSelected(position)==1){
+                    ((GridItemViewHolder)holder).box.setChecked(true);
+                }
+                else{
+                    ((GridItemViewHolder)holder).box.setChecked(false);
+                }
+            }
+            else{
+                ((GridItemViewHolder)holder).box.setVisibility(View.GONE);
+            }
             ((GridItemViewHolder)holder).name.setText(mList.get(position).getName());
             ((GridItemViewHolder)holder).num.setText(mList.get(position).listFiles()!=null ? ""+mList.get(position).listFiles().length:""+0);
             if(!mList.get(position).isDirectory()){
@@ -135,6 +147,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((GridItemViewHolder)holder).image.setImageResource(mList.get(position).isDirectory() ? R.drawable.folder:R.drawable.exe);
             ((GridItemViewHolder)holder).layout.setTag(POSITION_TAG, position);
             ((GridItemViewHolder)holder).layout.setOnClickListener(clickListener);
+            ((GridItemViewHolder)holder).layout.setOnLongClickListener(myLongListener);
 
 
         }
@@ -170,23 +183,27 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ((LinearItemViewHolder)holder).image.setImageResource(mList.get(position).isDirectory() ? R.drawable.folder:R.drawable.exe);
             ((LinearItemViewHolder)holder).layout.setTag(POSITION_TAG, position);
             ((LinearItemViewHolder)holder).layout.setOnClickListener(clickListener);
+            ((LinearItemViewHolder)holder).layout.setOnLongClickListener(myLongListener);
         }
     }
 
-    public void setSelective(boolean ntype){
-        isSelectable = ntype;
+    public void setSelectable(){
+        isSelectable = !isSelectable;
         selectedItem = new int[mList.size()];
         selectCount = 0;
     }
-    public boolean getSelective(){
+    public boolean getSelectable(){
         return isSelectable;
     }
 
     public int getSelectCount(){
         return selectCount;
     }
+    public void setSelectCount(int x){
+        this.selectCount = x;
+    }
 
-    public int delete(){
+    public void delete(){
         int count = 0;
         if(isSelectable){
             for(int i=0;i<selectedItem.length;i++){
@@ -197,18 +214,31 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 }
             }
         }
-        if(count>0) setAdapterList(Arrays.asList(new File(getCurrent()).listFiles()));
-        return count;
+        if(count>0) resetAdapter();
     }
 
-    View.OnClickListener clickListener = new View.OnClickListener(){
+    public void resetAdapter(){
+        setAdapterList(Arrays.asList(new File(getCurrent()).listFiles()));
+    }
+    public void clearSelect(){
+        selectedItem = new int[mList.size()];
+        setSelectCount(0);
+    }
+
+    private View.OnClickListener clickListener = new View.OnClickListener(){
         @Override
         public void onClick(View v) {
             int position = (int) v.getTag(POSITION_TAG);
-            listener.onItemClick(mList.get(position));
-            if(isSelectable){
-                itemSelected(position);
-            }
+            listener.onItemClick(mList.get(position), position);
+        }
+    };
+
+    private View.OnLongClickListener myLongListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            int position = (int) v.getTag(POSITION_TAG);
+            mymyLongClickListener.myonItemLongClick(mList.get(position), position);
+            return true;
         }
     };
 
@@ -223,6 +253,8 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     public void setAdapterList(List<File> list) {
+
+        init();
 
         mList = list;
         Collections.sort(mList, new Comparator<File>() {
@@ -242,6 +274,7 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         selectedItem = new int[list.size()];
 
+
         notifyDataSetChanged();
     }
 
@@ -260,6 +293,11 @@ class WordListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
     public int isThisItemSelected(int pos){
         return selectedItem[pos];
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return mList.get(position).getAbsolutePath().hashCode();
     }
 
     /**
@@ -282,13 +320,13 @@ class LinearItemViewHolder extends RecyclerView.ViewHolder {
 
     LinearItemViewHolder(@NonNull View itemView) {
         super(itemView);
-        background = itemView.findViewById(R.id.background);
-        box = itemView.findViewById(R.id.checkbox);
+        background = itemView.findViewById(R.id.linear_background);
+        box = itemView.findViewById(R.id.linear_checkbox);
         layout = itemView.findViewById(R.id.item_linear);
-        name = itemView.findViewById(R.id.filename);
-        num = itemView.findViewById(R.id.num);
-        date = itemView.findViewById(R.id.date);
-        image = itemView.findViewById(R.id.image);
+        name = itemView.findViewById(R.id.linear_filename);
+        num = itemView.findViewById(R.id.linear_num);
+        date = itemView.findViewById(R.id.linear_date);
+        image = itemView.findViewById(R.id.linear_image);
     }
 }
 
@@ -298,15 +336,18 @@ class GridItemViewHolder extends RecyclerView.ViewHolder{
     TextView num;
     TextView date;
     ImageView image;
-
+    CheckBox box;
+    ImageView background;
 
     GridItemViewHolder(@NonNull View itemView) {
         super(itemView);
+        background = itemView.findViewById(R.id.grid_background);
+        box = itemView.findViewById(R.id.grid_checkbox);
         layout = itemView.findViewById(R.id.item_grid);
-        name = itemView.findViewById(R.id.filename);
-        num = itemView.findViewById(R.id.num);
-        date = itemView.findViewById(R.id.date);
-        image = itemView.findViewById(R.id.image);
+        name = itemView.findViewById(R.id.grid_filename);
+        num = itemView.findViewById(R.id.grid_num);
+        date = itemView.findViewById(R.id.grid_date);
+        image = itemView.findViewById(R.id.grid_image);
 
 
     }

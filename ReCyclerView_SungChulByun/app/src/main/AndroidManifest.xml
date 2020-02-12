@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".FileActivity"></activity>
+        <activity android:name=".TextActivity" android:windowSoftInputMode="adjustResize">
+        </activity>
         <activity android:name=".DeleteCheck" />
         <activity
             android:name=".MainActivity"
