@@ -3,14 +3,22 @@ package com.example.viewpager_practice_byun;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private final String TAG = "asdf";
 
     private ViewPager pager;
     private ViewAdapter myAdapter;
-    private TextView left, middle, right;
 
 
     @Override
@@ -19,11 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
-        left = findViewById(R.id.search_type);
-        middle = findViewById(R.id.search_text);
-        right = findViewById(R.id.search_start);
 
-
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.child, null);
 
     }
     private void init(){

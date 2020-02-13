@@ -13,57 +13,7 @@
         android:layout_height="0dp"
         app:layout_constraintVertical_weight="9"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/search_bar"
-        />
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintVertical_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pager"
-        >
-        <TextView
-            android:id="@+id/search_type"
-            android:layout_width="0dp"
-            app:layout_constraintHorizontal_weight="1"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/search_text"
-            android:text="뉴스"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:background="@drawable/left_rounded"
-            />
-
-        <TextView
-            android:id="@+id/search_text"
-            android:layout_width="0dp"
-            app:layout_constraintHorizontal_weight="3"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toRightOf="@id/search_type"
-            app:layout_constraintRight_toLeftOf="@id/search_start"
-            android:background="@drawable/search_text_style"
-            />
-        <ImageView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toRightOf="@id/search_text"
-            app:layout_constraintRight_toLeftOf="@id/search_start"
-            android:src="#ffffff"
-            />
-        <TextView
-            android:id="@+id/search_start"
-            android:layout_width="0dp"
-            app:layout_constraintHorizontal_weight="1"
-            android:layout_height="match_parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/search_text"
-            android:background="@drawable/right_rounded"
-            />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </androidx.viewpager.widget.ViewPager>
 </androidx.constraintlayout.widget.ConstraintLayout>
