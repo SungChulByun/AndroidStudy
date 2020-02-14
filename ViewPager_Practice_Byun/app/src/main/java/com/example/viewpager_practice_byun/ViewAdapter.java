@@ -2,13 +2,11 @@ package com.example.viewpager_practice_byun;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -16,14 +14,10 @@ import androidx.viewpager.widget.PagerAdapter;
 public class ViewAdapter extends PagerAdapter {
 
     private LayoutInflater inflater;
-    private String[] name = new String[] {"Luffy", "Nami", "Sanji"};
+    private String[] name = new String[] {"Luffy", "Nami"};
 
     public ViewAdapter(LayoutInflater inflater){
         this.inflater = inflater;
-    }
-
-    public void setSearchType(String text, int position){
-
     }
 
     @NonNull
@@ -38,9 +32,7 @@ public class ViewAdapter extends PagerAdapter {
         middle.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String text = s.toString();
@@ -51,12 +43,11 @@ public class ViewAdapter extends PagerAdapter {
                     search.setImageResource(R.drawable.search_button_normal);
                 }
             }
-
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
+
         container.addView(view, position);
         return view;
     }
@@ -64,7 +55,7 @@ public class ViewAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
