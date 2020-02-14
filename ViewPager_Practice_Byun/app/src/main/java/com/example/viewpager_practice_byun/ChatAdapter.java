@@ -29,12 +29,35 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final int TYPE_BLOG = 9998;
     private final int TYPE_NEWS = 9997;
 
+    private final int MY_KEY = 9311;
+
     private int check;
 
     public ChatAdapter(Context context){
         this.chatList = new ArrayList<customData>();
         this.inflater = LayoutInflater.from(context);
         check = -1;
+    }
+
+    private myOnItemClickListener myListener;
+
+    public interface myOnItemClickListener{
+        void OnItemClick(int position);
+    }
+    public void setmyOnItemClickListener(myOnItemClickListener listener){
+        this.myListener = listener;
+    }
+
+    private View.OnClickListener myItemClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int position = (int) v.getTag(MY_KEY);
+            myListener.OnItemClick(position);
+        }
+    };
+
+    public customData getItem(int position){
+        return chatList.get(position);
     }
 
     @NonNull
@@ -61,14 +84,17 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         switch (getItemViewType(position)){
             case TYPE_IMAGE:
                 ((ImageHolder) holder).setData((dataImage) chatList.get(position));
+                ((ImageHolder) holder).linkButton.setOnClickListener(myItemClickListener);
                 break;
 
             case TYPE_BLOG:
                 ((BlogHolder) holder).setData((dataBlog) chatList.get(position));
+                ((BlogHolder) holder).linkButton.setOnClickListener(myItemClickListener);
                 break;
 
             case TYPE_NEWS:
                 ((NewsHolder) holder).setData((dataNews) chatList.get(position));
+                ((NewsHolder) holder).linkButton.setOnClickListener(myItemClickListener);
                 break;
 
         }
@@ -98,13 +124,15 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 class NewsHolder extends RecyclerView.ViewHolder{
 
-    private TextView title;
-    private TextView description;
-    private TextView newsDate;
-    private String link;
+    TextView title;
+    TextView description;
+    TextView newsDate;
+    String link;
+    TextView linkButton;
 
     public NewsHolder(@NonNull View itemView) {
         super(itemView);
+        linkButton = itemView.findViewById(R.id.news_link);
         title = itemView.findViewById(R.id.news_title);
         description = itemView.findViewById(R.id.news_description);
         newsDate = itemView.findViewById(R.id.news_date);
@@ -122,13 +150,15 @@ class NewsHolder extends RecyclerView.ViewHolder{
 
 
 class BlogHolder extends RecyclerView.ViewHolder{
-    private TextView title;
-    private TextView description;
-    private TextView blogName;
-    private String link;
+    TextView title;
+    TextView description;
+    TextView blogName;
+    TextView linkButton;
+    String link;
 
     public BlogHolder(@NonNull View itemView) {
         super(itemView);
+        linkButton = itemView.findViewById(R.id.blog_link);
         title = itemView.findViewById(R.id.blog_title);
         description = itemView.findViewById(R.id.blog_description);
         blogName = itemView.findViewById(R.id.blog_name);
@@ -144,11 +174,13 @@ class BlogHolder extends RecyclerView.ViewHolder{
 }
 
 class ImageHolder extends RecyclerView.ViewHolder{
-    private ImageView title;
-    private TextView showAll;
-    private String imageLink;
+    ImageView title;
+    TextView showAll;
+    String imageLink;
+    TextView linkButton;
     public ImageHolder(@NonNull View itemView) {
         super(itemView);
+        linkButton = itemView.findViewById(R.id.image_link);
         title = itemView.findViewById(R.id.image_image);
         showAll = itemView.findViewById(R.id.image_link);
         imageLink = null;

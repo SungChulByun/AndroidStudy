@@ -2,6 +2,8 @@ package com.example.viewpager_practice_byun;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
@@ -31,6 +33,7 @@ import com.example.viewpager_practice_byun.SearchType.Blog_Result;
 import com.example.viewpager_practice_byun.SearchType.Image_Result;
 import com.example.viewpager_practice_byun.SearchType.News_Result;
 
+import java.net.URI;
 import java.util.List;
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;
@@ -148,6 +151,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private ChatAdapter.myOnItemClickListener adapterListener = new ChatAdapter.myOnItemClickListener() {
+        @Override
+        public void OnItemClick(int position) {
+            int viewType = mAdapter.getItemViewType(position);
+            if (viewType == TYPE_IMAGE) {
+                //Todo GridRecyclerView
+
+            }
+            else {
+                Intent bIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mAdapter.getItem(position).getLink()));
+                startActivity(bIntent);
+            }
+        }
+    };
 
     public void mainSearchNews(String text){
         String stype = "news.json";
