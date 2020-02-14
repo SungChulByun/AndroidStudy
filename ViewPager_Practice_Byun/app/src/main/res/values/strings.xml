@@ -3,7 +3,5 @@
     <dimen name="standard">1dp</dimen>
     <dimen name="radius">10dp</dimen>
     <dimen name="standard_2">2dp</dimen>
-    <integer name="typeIMAGE">9999</integer>
-    <integer name="typeBlog">9998</integer>
-    <integer name="typeNews">9997</integer>
+
 </resources>

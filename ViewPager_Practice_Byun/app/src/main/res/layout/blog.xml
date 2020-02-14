@@ -54,8 +54,9 @@
             app:layout_constraintTop_toTopOf="@id/blog_result"
             app:layout_constraintLeft_toLeftOf="@id/blog_result"
             android:padding="4dp"
+            android:ellipsize="end"
 
-            android:text="다음(daum)으로 가자! (feat. 네이버 금융 주식"
+
             />
         <TextView
             android:id="@+id/blog_description"
@@ -68,8 +69,8 @@
             android:textSize="16dp"
             android:textColor="@color/description"
             android:padding="4dp"
+            android:ellipsize="end"
 
-            android:text="가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사"
             />
 
         <TextView
@@ -82,26 +83,33 @@
             android:textSize="12dp"
             android:textColor="@color/description"
             android:padding="4dp"
-
-            android:text="투자하고 블로그하는 아빠 클라이머"
+            android:ellipsize="end"
             />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
         <TextView
             android:id="@+id/blog_link"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:gravity="left|center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/blog_result"
+            app:layout_constraintTop_toBottomOf="@id/blog_name"
             app:layout_constraintLeft_toLeftOf="@id/blog_result"
             app:layout_constraintRight_toRightOf="@id/blog_result"
-            android:background="@drawable/bot_rounded"
             android:textSize="20dp"
             android:textColor="@color/description"
             android:padding="4dp"
 
             android:text="블로그 모두 보기"
             />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="#cccccc"
+            app:layout_constraintTop_toBottomOf="@id/blog_name"
+            app:layout_constraintBottom_toTopOf="@id/blog_link"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 

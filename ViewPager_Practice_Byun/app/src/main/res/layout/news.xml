@@ -54,8 +54,8 @@
             app:layout_constraintTop_toTopOf="@id/news_result"
             app:layout_constraintLeft_toLeftOf="@id/news_result"
             android:padding="4dp"
+            android:ellipsize="end"
 
-            android:text="다음(daum)으로 가자! (feat. 네이버 금융 주식"
             />
         <TextView
             android:id="@+id/news_description"
@@ -68,40 +68,49 @@
             android:textSize="16dp"
             android:textColor="@color/description"
             android:padding="4dp"
+            android:ellipsize="end"
 
-            android:text="가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사 가나다라마바사"
             />
 
         <TextView
-            android:id="@+id/news_name"
+            android:id="@+id/news_date"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:gravity="bottom|left"
             app:layout_constraintTop_toBottomOf="@id/news_description"
+            app:layout_constraintBottom_toTopOf="@id/news_link"
             app:layout_constraintLeft_toLeftOf="@id/news_result"
             android:textSize="12dp"
             android:textColor="@color/description"
             android:padding="4dp"
+            android:ellipsize="end"
+            />
 
-            android:text="투자하고 블로그하는 아빠 클라이머"
+        <TextView
+            android:id="@+id/news_link"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:gravity="left|center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/news_result"
+            app:layout_constraintLeft_toLeftOf="@id/news_result"
+            app:layout_constraintRight_toRightOf="@id/news_result"
+            app:layout_constraintBottom_toBottomOf="@id/news_result"
+            android:textSize="20dp"
+            android:textColor="@color/description"
+            android:padding="4dp"
+
+            android:text="뉴스 모두 보기"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="#cccccc"
+            app:layout_constraintTop_toTopOf="@id/news_link"
+            app:layout_constraintBottom_toBottomOf="@id/news_date"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/news_link"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:gravity="left|center_vertical"
-        app:layout_constraintTop_toBottomOf="@id/news_result"
-        app:layout_constraintLeft_toLeftOf="@id/news_result"
-        app:layout_constraintRight_toRightOf="@id/news_result"
-        android:background="@drawable/bot_rounded"
-        android:textSize="20dp"
-        android:textColor="@color/description"
-        android:padding="4dp"
 
-        android:text="블로그 모두 보기"
-        />
 
 
 

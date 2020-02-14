@@ -9,6 +9,10 @@ public class customData {
     private String showAll;
     private int type;
 
+    private final int TYPE_IMAGE = 9999;
+    private final int TYPE_BLOG = 9998;
+    private final int TYPE_NEWS = 9997;
+
     public customData(String t, String des, String date, String name, String link, String showAll, int type){
         this.title=t;
         this.description=des;
@@ -17,6 +21,9 @@ public class customData {
         this.link=link;
         this.showAll=showAll;
         this.type=type;
+    }
+    public customData(){
+
     }
 
     public void setDate(String date) {

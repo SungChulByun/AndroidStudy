@@ -19,6 +19,20 @@ public interface API_Interface {
             "X-Naver-Client-Secret: 8B3emomXbq"
     })
     @GET("/v1/search/{type}")
-    Call<Blog_Result> search_Image(@Path("type") String stype , @Query("query") String text);
+    Call<Image_Result> search_Image(@Path("type") String stype , @Query("query") String text);
 
+    @Headers({
+            "X-Naver-Client-Id: nnfdZXpFFzGmrG5JGWMt",
+            "X-Naver-Client-Secret: 8B3emomXbq"
+    })
+    @GET("/v1/search/{type}")
+    Call<Blog_Result> search_Blog(@Path("type") String stype , @Query("query") String text);
+
+
+    @Headers({
+            "X-Naver-Client-Id: nnfdZXpFFzGmrG5JGWMt",
+            "X-Naver-Client-Secret: 8B3emomXbq"
+    })
+    @GET("/v1/search/{type}")
+    Call<News_Result> search_News(@Path("type") String stype , @Query("query") String text);
 }

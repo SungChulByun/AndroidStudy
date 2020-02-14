@@ -62,6 +62,7 @@ public class NaverLoginActivity extends AppCompatActivity {
     private void initView() {
         mOAuthLoginButton = (OAuthLoginButton) findViewById(R.id.buttonOAuthLoginImg);
         mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
+        mOAuthLoginButton.setBackgroundColor(getResources().getColor(R.color.naver_dark));
     }
 
     @Override

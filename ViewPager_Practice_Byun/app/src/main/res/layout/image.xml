@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginRight="40dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/image_icon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/naver_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+    <TextView
+        android:id="@+id/image_naver"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        app:layout_constraintLeft_toRightOf="@id/image_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="NAVER"
+        android:textColor="@color/naver"
+        android:textSize="16dp"
+        android:layout_marginLeft="16dp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/image_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:background="@drawable/top_rounded"
+
+        app:layout_constraintLeft_toRightOf="@id/image_icon"
+        app:layout_constraintTop_toBottomOf="@id/image_naver"
+
+        >
+        <ImageView
+            android:id="@+id/image_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/image_result"
+            app:layout_constraintRight_toRightOf="@id/image_result"
+            app:layout_constraintTop_toTopOf="@id/image_result"
+            app:layout_constraintBottom_toTopOf="@id/image_link"
+            />
+
+        <TextView
+            android:id="@+id/image_link"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="left|center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/image_image"
+            app:layout_constraintLeft_toLeftOf="@id/image_result"
+            android:layout_margin="8dp"
+            android:textSize="20dp"
+            android:textColor="@color/description"
+            android:padding="4dp"
+
+            android:text="이미지 모두 보기"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:src="#cccccc"
+            app:layout_constraintTop_toBottomOf="@id/image_image"
+            app:layout_constraintBottom_toTopOf="@id/image_link"
+            app:layout_constraintRight_toRightOf="@id/image_result"
+            app:layout_constraintLeft_toLeftOf="@id/image_result"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,29 +24,12 @@ public class ViewAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view;
-        view = inflater.inflate(R.layout.child, null);
-        ImageView img = view.findViewById(R.id.child_image);
+        view = inflater.inflate(R.layout.news, null);
+        ImageView img = view.findViewById(R.id.main_image);
         img.setImageResource(R.drawable.onepiece_01+position);
         EditText middle = view.findViewById(R.id.search_text);
         final ImageView search = view.findViewById(R.id.search_button);
-        middle.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String text = s.toString();
-                if(text.length()>0){
-                    search.setImageResource(R.drawable.search_button_green);
-                }
-                else{
-                    search.setImageResource(R.drawable.search_button_normal);
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
+
 
         container.addView(view, position);
         return view;
