@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ViewPager_Practice_Byun</string>
     <dimen name="standard">1dp</dimen>
-    <dimen name="radius">10dp</dimen>
+    <dimen name="radius">5dp</dimen>
     <dimen name="standard_2">2dp</dimen>
 
 </resources>
