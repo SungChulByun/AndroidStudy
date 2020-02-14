@@ -10,7 +10,7 @@
     >
 
     <ImageView
-        android:id="@+id/blog_icon"
+        android:id="@+id/news_icon"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:src="@drawable/naver_icon"
@@ -18,10 +18,10 @@
         app:layout_constraintLeft_toLeftOf="parent"
         />
     <TextView
-        android:id="@+id/blog_naver"
+        android:id="@+id/news_naver"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        app:layout_constraintLeft_toRightOf="@id/blog_icon"
+        app:layout_constraintLeft_toRightOf="@id/news_icon"
         app:layout_constraintTop_toTopOf="parent"
         android:text="NAVER"
         android:textColor="@color/naver"
@@ -30,7 +30,7 @@
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/blog_result"
+        android:id="@+id/news_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -38,33 +38,33 @@
 
         android:background="@drawable/top_rounded"
 
-        app:layout_constraintLeft_toRightOf="@id/blog_icon"
-        app:layout_constraintTop_toBottomOf="@id/blog_naver"
+        app:layout_constraintLeft_toRightOf="@id/news_icon"
+        app:layout_constraintTop_toBottomOf="@id/news_naver"
         app:layout_constraintRight_toRightOf="parent"
         >
 
         <TextView
-            android:id="@+id/blog_title"
+            android:id="@+id/news_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="left|center_vertical"
             android:maxLines="1"
             android:textSize="24dp"
             android:textColor="@color/title"
-            app:layout_constraintTop_toTopOf="@id/blog_result"
-            app:layout_constraintLeft_toLeftOf="@id/blog_result"
+            app:layout_constraintTop_toTopOf="@id/news_result"
+            app:layout_constraintLeft_toLeftOf="@id/news_result"
             android:padding="4dp"
 
             android:text="다음(daum)으로 가자! (feat. 네이버 금융 주식"
             />
         <TextView
-            android:id="@+id/blog_description"
+            android:id="@+id/news_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left|top"
             android:maxLines="3"
-            app:layout_constraintTop_toBottomOf="@id/blog_title"
-            app:layout_constraintLeft_toLeftOf="@id/blog_result"
+            app:layout_constraintTop_toBottomOf="@id/news_title"
+            app:layout_constraintLeft_toLeftOf="@id/news_result"
             android:textSize="16dp"
             android:textColor="@color/description"
             android:padding="4dp"
@@ -73,12 +73,12 @@
             />
 
         <TextView
-            android:id="@+id/blog_name"
+            android:id="@+id/news_name"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:gravity="bottom|left"
-            app:layout_constraintTop_toBottomOf="@id/blog_description"
-            app:layout_constraintLeft_toLeftOf="@id/blog_result"
+            app:layout_constraintTop_toBottomOf="@id/news_description"
+            app:layout_constraintLeft_toLeftOf="@id/news_result"
             android:textSize="12dp"
             android:textColor="@color/description"
             android:padding="4dp"
@@ -87,21 +87,21 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/blog_link"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:gravity="left|center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/blog_result"
-            app:layout_constraintLeft_toLeftOf="@id/blog_result"
-            app:layout_constraintRight_toRightOf="@id/blog_result"
-            android:background="@drawable/bot_rounded"
-            android:textSize="20dp"
-            android:textColor="@color/description"
-            android:padding="4dp"
+    <TextView
+        android:id="@+id/news_link"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:gravity="left|center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/news_result"
+        app:layout_constraintLeft_toLeftOf="@id/news_result"
+        app:layout_constraintRight_toRightOf="@id/news_result"
+        android:background="@drawable/bot_rounded"
+        android:textSize="20dp"
+        android:textColor="@color/description"
+        android:padding="4dp"
 
-            android:text="블로그 모두 보기"
-            />
+        android:text="블로그 모두 보기"
+        />
 
 
 

@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="naver">#FF1BC94A</color>
+    <color name="chat_yellow">#FFFF1F</color>
+    <color name="title">#000000</color>
+    <color name="description">#333333</color>
 </resources>
