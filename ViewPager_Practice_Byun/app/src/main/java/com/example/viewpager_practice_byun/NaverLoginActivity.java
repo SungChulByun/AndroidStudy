@@ -20,11 +20,12 @@ public class NaverLoginActivity extends AppCompatActivity {
 
     private final String TAG = "sungchul";
 
-    private static String OAUTH_CLIENT_ID = "i7Im0pZsqmtcyUytp3_B";
-    private static String OAUTH_CLIENT_SECRET = "OZp5l0J87l";
+    private static String OAUTH_CLIENT_ID = "xtRJzO1RX4ruym2PKeao";
+    private static String OAUTH_CLIENT_SECRET = "Be7KOxAwMi";
     private static String OAUTH_CLIENT_NAME = "ByunSungChul_ViewPager";
 
     private static OAuthLogin mOAuthLoginInstance;
+
     private static Context mContext;
 
 
@@ -80,6 +81,8 @@ public class NaverLoginActivity extends AppCompatActivity {
         public void run(boolean success) {
             if (success) {
                 Intent intent = new Intent(mContext, MainActivity.class);
+                String token = mOAuthLoginInstance.getAccessToken(mContext);
+                intent.putExtra("token", token);
                 mContext.startActivity(intent);
 
             } else {

@@ -12,6 +12,7 @@ public class customData {
     private final int TYPE_IMAGE = 9999;
     private final int TYPE_BLOG = 9998;
     private final int TYPE_NEWS = 9997;
+    private final int TYPE_HISTORY = 9996;
 
     public customData(String t, String des, String date, String name, String link, String showAll, int type){
         this.title=t;

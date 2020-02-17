@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3a9364e0-1c1c-489a-aa7d-ec124bc69bb3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/androidTest/java/com/example/myapplication/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/java/com/example/myapplication/MainActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/app/src/test/java/com/example/myapplication/ExampleUnitTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MyApplication15/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ImagePage/ImageAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ImagePage/ImageResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ImagePager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/SearchType/Profile_Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/drawable/grid_image_slide.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/activity_image_pager.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/activity_image_result.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/grid_image.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/image_slide.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Example" beforeDir="false" afterPath="$PROJECT_DIR$/../Example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Feb_7/Example" beforeDir="false" afterPath="$PROJECT_DIR$/../Feb_7/Example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Andr-SearChat-JaeEun/app/src/main/java/com/example/searchat/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Andr-SearChat-JaeEun/app/src/main/java/com/example/searchat/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/androidTest/java/com/example/myapplication123/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/androidTest/java/com/example/myapplication123/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/APIClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/APIInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/APIInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/CreateUserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/CreateUserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/Image.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/Image.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/UserList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/java/com/example/myapplication123/pojo/UserList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication123/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication123/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/androidTest/java/com/example/myapplication/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/androidTest/java/com/example/myapplication/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/java/com/example/myapplication/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/java/com/example/myapplication/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/java/com/example/myapplication/myAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/java/com/example/myapplication/myAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/left.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/left.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/middle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/middle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/right.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/drawable/right.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/layout/viewpage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/layout/viewpage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication13/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication13/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/androidTest/java/com/example/myapplication/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/androidTest/java/com/example/myapplication/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/java/com/example/myapplication/Contributor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/java/com/example/myapplication/Contributor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/java/com/example/myapplication/GitHubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/java/com/example/myapplication/GitHubService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/java/com/example/myapplication/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/java/com/example/myapplication/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MyApplication14/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MyApplication14/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReCyclerView_SungChulByun/app/src/main/java/com/example/recyclerview_sungchulbyun/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ReCyclerView_SungChulByun/app/src/main/java/com/example/recyclerview_sungchulbyun/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReCyclerView_SungChulByun/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ReCyclerView_SungChulByun/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ReCyclerView_SungChulByun/app/src/main/res/menu/popup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ReCyclerView_SungChulByun/app/src/main/res/menu/popup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Study_app_1" beforeDir="false" afterPath="$PROJECT_DIR$/../Study_app_1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/androidTest/java/com/example/test_login/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/androidTest/java/com/example/test_login/ExampleInstrumentedTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/java/com/example/test_login/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/java/com/example/test_login/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Test_Login/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Test_Login/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/API_Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/API_Interface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ChatAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/customData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/customData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataBlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataNews.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/CustomData/dataNews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/NaverLoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/NaverLoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ReAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/Search.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/java/com/example/viewpager_practice_byun/ViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/image.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/image.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/search_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/layout/search_history.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ViewPager_Practice_Byun/app/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a9364e0-1c1c-489a-aa7d-ec124bc69bb3" name="Default Changelist" comment="" />
+      <created>1581920782803</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581920782803</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.15151516" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+</project>

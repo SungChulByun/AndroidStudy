@@ -11,34 +11,37 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
+
 public class ViewAdapter extends PagerAdapter {
 
     private LayoutInflater inflater;
-    private String[] name = new String[] {"Luffy", "Nami"};
+    private ArrayList<String> list;
 
-    public ViewAdapter(LayoutInflater inflater){
+    public ViewAdapter(LayoutInflater inflater, ArrayList<String> list){
         this.inflater = inflater;
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View view;
-        view = inflater.inflate(R.layout.news, null);
-        ImageView img = view.findViewById(R.id.main_image);
-        img.setImageResource(R.drawable.onepiece_01+position);
-        EditText middle = view.findViewById(R.id.search_text);
-        final ImageView search = view.findViewById(R.id.search_button);
+        view = inflater.inflate(R.layout.image_slide, null);
+        ImageView img = view.findViewById(R.id.slide_image);
+        Glide.with(view).load(list.get(position)).into(img);
 
-
-        container.addView(view, position);
+        container.addView(view);
         return view;
     }
 
 
     @Override
     public int getCount() {
-        return 2;
+        return list.size();
     }
 
     @Override
