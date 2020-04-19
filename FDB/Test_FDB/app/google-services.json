@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "762294949820",
+    "firebase_url": "https://selectmeal-966f2.firebaseio.com",
+    "project_id": "selectmeal-966f2",
+    "storage_bucket": "selectmeal-966f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762294949820:android:23d9ce8d92e6df1390bdb9",
+        "android_client_info": {
+          "package_name": "com.example.test_fdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762294949820-a2uk4el08q8gbrhso06scdi6j0nuptsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNiW93Qrsyt84SGiADiQk9qXcfOEZuVgg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762294949820-a2uk4el08q8gbrhso06scdi6j0nuptsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
