@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="viewModel"
+                type="com.example.pr_room_livedata_test.MainViewModel" />
+        <variable
+                name="position"
+                type="Integer" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="100dp">
+
+        <TextView
+                android:id="@+id/member_name"
+                android:layout_width="0dp"
+                app:layout_constraintHorizontal_weight="1"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/member_email"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="@{viewModel.memberList.get(position).memberName}"
+            />
+        <TextView
+                android:id="@+id/member_email"
+                android:layout_width="0dp"
+                app:layout_constraintHorizontal_weight="1"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toRightOf="@id/member_name"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="@{viewModel.memberList.get(position).email}"
+                />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

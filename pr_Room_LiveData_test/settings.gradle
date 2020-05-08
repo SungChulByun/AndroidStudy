@@ -1,0 +1,2 @@
+rootProject.name='pr_Room_LiveData_test'
+include ':app'
