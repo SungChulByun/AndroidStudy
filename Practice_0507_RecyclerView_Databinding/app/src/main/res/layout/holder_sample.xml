@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+                name="sample"
+                type="com.example.practice_0507_recyclerview_databinding.Sample" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="50dp">
+
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                app:layout_constraintHorizontal_weight="3"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/email"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="@{sample.sampleName}"
+            />
+
+        <TextView
+                android:id="@+id/email"
+                android:layout_width="0dp"
+                app:layout_constraintHorizontal_weight="7"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toRightOf="@id/name"
+                app:layout_constraintRight_toRightOf="parent"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:text="@{sample.sampleEmail}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

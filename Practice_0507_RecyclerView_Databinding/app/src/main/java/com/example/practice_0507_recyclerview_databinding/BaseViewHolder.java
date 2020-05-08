@@ -1,4 +1,13 @@
 package com.example.practice_0507_recyclerview_databinding;
 
-public class BaseViewHolder {
+import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
+
+	public BaseViewHolder(@NonNull View itemView) {
+		super(itemView);
+	}
+
 }
