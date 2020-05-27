@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom = "http://schemas.android.com/apk/res-auto"
+
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.yongin.feature.main.MainViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.example.yongin.feature.custom.CustomButton
+            android:id="@+id/lexio_button"
+            style="@style/customButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/poker_button"
+            custom:description="lexio"
+            android:onClick="@{()->viewModel.onClickLexioButton()}"
+            />
+
+        <com.example.yongin.feature.custom.CustomButton
+            android:id="@+id/poker_button"
+            style="@style/customButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/lexio_button"
+            custom:description="poker"
+            android:onClick="@{()->viewModel.onClickPokerButton()}"
+            />
+
+        <com.example.yongin.feature.custom.CustomButton
+            android:id="@+id/team_button"
+            style="@style/customButton"
+            app:layout_constraintTop_toBottomOf="@id/lexio_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/bill_button"
+            custom:description="team"
+            />
+
+        <com.example.yongin.feature.custom.CustomButton
+            android:id="@+id/bill_button"
+            style="@style/customButton"
+            app:layout_constraintTop_toBottomOf="@id/poker_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/team_button"
+            custom:description="bill"
+            />
+
+        <com.example.yongin.feature.custom.CustomButton
+            android:id="@+id/game_button"
+            style="@style/customButton"
+            app:layout_constraintTop_toBottomOf="@id/team_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/meal_button"
+            custom:description="game"
+            />
+
+        <com.example.yongin.feature.custom.CustomButton
+            android:id="@+id/meal_button"
+            style="@style/customButton"
+            app:layout_constraintTop_toBottomOf="@id/bill_button"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/game_button"
+            custom:description="meal"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

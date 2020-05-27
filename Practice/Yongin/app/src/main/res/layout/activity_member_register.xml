@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.yongin.feature.onProgress.memberSelect.MemberRegisterViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#aaaaaabc"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/main_button"
+            android:backgroundTint="#ffffff"
+            >
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="새 멤버 등록"
+                android:gravity="center"
+                android:textSize="24dp"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="#000000"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                />
+
+            <EditText
+                android:id="@+id/member_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                android:hint="새 멤버 이름을 입력하세요"
+                android:gravity="center"
+                android:background="@android:color/transparent"
+                android:text="@={viewModel.memberName}"
+                android:maxLines="1"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:src="#000000"
+                app:layout_constraintTop_toBottomOf="@id/member_name_edit"
+                />
+
+            <TextView
+                android:id="@+id/cancel_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textSize="24dp"
+                android:text="취소"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/member_name_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/register_button"
+                android:onClick="@{()->viewModel.onCancelButtonClick()}"
+                />
+
+            <TextView
+                android:id="@+id/register_button"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:textSize="24dp"
+                android:text="등록"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/member_name_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/cancel_button"
+                android:onClick="@{()->viewModel.onRegisterButtonClick()}"
+                />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:src="#000000"
+                app:layout_constraintTop_toBottomOf="@id/member_name_edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/register_button"
+                app:layout_constraintLeft_toRightOf="@id/cancel_button"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

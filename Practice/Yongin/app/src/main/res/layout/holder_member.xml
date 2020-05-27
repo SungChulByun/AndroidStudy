@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="member"
+            type="com.example.yongin.model.Member" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/main_button"
+        android:backgroundTint="@{member.selected ? @color/member_selected : @color/not_selected_gray}">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@{member.name}"
+            android:textSize="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

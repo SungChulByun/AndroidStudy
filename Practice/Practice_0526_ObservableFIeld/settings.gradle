@@ -1,0 +1,2 @@
+rootProject.name='Practice_0526_ObservableFIeld'
+include ':app'

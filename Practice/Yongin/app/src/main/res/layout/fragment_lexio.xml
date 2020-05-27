@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.yongin.feature.onProgress.ProgressViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.example.yongin.recyclerView.MyRecyclerView
+            android:id="@+id/lexio_member_recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            bind:bindLexioMemberList="@{viewModel.selectedMemberList}"
+            />
+
+        <com.example.yongin.recyclerView.MyRecyclerView
+            android:id="@+id/lexio_score_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toRightOf="@id/lexio_member_recyclerView"
+            app:layout_constraintRight_toRightOf="parent"
+            bind:bindLexioScoreList="@{viewModel.lexioScoreList}"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

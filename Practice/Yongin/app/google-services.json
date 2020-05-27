@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "734409572735",
+    "firebase_url": "https://yongin-c73f8.firebaseio.com",
+    "project_id": "yongin-c73f8",
+    "storage_bucket": "yongin-c73f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734409572735:android:ed969c033c35fc237d9a4a",
+        "android_client_info": {
+          "package_name": "com.example.yongin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734409572735-km2ph2530a276hsuepjl2tt69vm3fbke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.yongin",
+            "certificate_hash": "bb8702b7fc838ab50a2e0d9c0b18264c5fd044de"
+          }
+        },
+        {
+          "client_id": "734409572735-beqemc5k7rfgrm22pro0r1m7jbtqrdkt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsAonpeBAYYdpZdfCaHKQAId9PtWLTGL0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734409572735-beqemc5k7rfgrm22pro0r1m7jbtqrdkt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

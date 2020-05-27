@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res/android"
+    >
+
+    <data>
+
+        <variable
+            name="scoreList"
+            type="com.example.yongin.model.LexioScore" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="40dp"
+        android:layout_height="match_parent">
+
+        <com.example.yongin.recyclerView.MyRecyclerView
+            android:id="@+id/each_round_score_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:bindLexioScoreDetailList="@{scoreList.scoreList}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

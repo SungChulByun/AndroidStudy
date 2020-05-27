@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Yongin</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <dimen name="square_holder_width">64dp</dimen>
+    <dimen name="square_holder_height">40dp</dimen>
+</resources>
